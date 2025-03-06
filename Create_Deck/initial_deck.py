@@ -1,7 +1,7 @@
 import random
 
 
-def get_energy_card_for_type(pokemon_type):
+def get_energy_card_for_type(pokemon_type):     # Legt passende Energiekarten direkt am Anfang ins Deck
     energy_map = {
         "Darkness": "Basic Darkness Energy Scarlet & Violet 15",
         "Dragon": "Basic Grass Energy Scarlet & Violet 9",  # Drachen nutzen verschiedene Energien
@@ -13,10 +13,10 @@ def get_energy_card_for_type(pokemon_type):
         "Psychic": "Basic Psychic Energy Scarlet & Violet 13",
         "Water": "Basic Water Energy Scarlet & Violet 11",
     }
-    return energy_map.get(pokemon_type)  # Error-Validation wird vorher abgerufen
+    return energy_map.get(pokemon_type)  # Error-Validation wird vorher abgerufen bzw. abgefangen
 
 
-def get_specific_type_deck_1x(pokemon_type):
+def get_specific_type_deck_1x(pokemon_type):       # Ist die Funktion, die Karten 1x von Anfang an ins Deck packt
     set_trainer = {
         "Colorless": {
             'Bloodmoon Ursaluna ex Twilight Masquerade 141',
@@ -147,7 +147,7 @@ def get_specific_type_deck_1x(pokemon_type):
     return set_trainer.get(pokemon_type, None)
 
 
-def get_specific_type_deck_2x(pokemon_type):
+def get_specific_type_deck_2x(pokemon_type):    # Ist die Funktion, die Karten 2x von Anfang an ins Deck packt
     set_trainer = {
         "Colorless": {
             "Pidgey Obsidian Flames 162",
@@ -224,7 +224,7 @@ def get_specific_type_deck_2x(pokemon_type):
     return set_trainer.get(pokemon_type, None)
 
 
-def get_specific_type_deck_3x(pokemon_type):
+def get_specific_type_deck_3x(pokemon_type):        # Ist die Funktion, die Karten 3x von Anfang an ins Deck packt
     set_trainer = {
         "Colorless": {
             "Ultra Ball Scarlet & Violet 196",
@@ -296,7 +296,7 @@ def get_specific_type_deck_3x(pokemon_type):
     return set_trainer.get(pokemon_type, None)
 
 
-def get_specific_type_deck_4x(pokemon_type):
+def get_specific_type_deck_4x(pokemon_type):    # # Ist die Funktion, die Karten 4x von Anfang an ins Deck packt
     set_trainer = {
         "Colorless": {
             "Arven Obsidian Flames 186",
@@ -356,8 +356,8 @@ def get_specific_type_deck_4x(pokemon_type):
 
 # Initialisierung des Decks mit anpassbarer Energie
 def create_initial_deck(pokemon_type, pokemon_cards, trainer_cards, energy_cards):
-    # Die richtige Energie-Karte für den Pokémon-Typ bestimmen
-    chosen_energy = get_energy_card_for_type(pokemon_type)
+
+    chosen_energy = get_energy_card_for_type(pokemon_type)  # Bestimmt richtige Energie-Karte für den Pokémon-Typ
     chosen_deck_1 = get_specific_type_deck_1x(pokemon_type)
     chosen_deck_2 = get_specific_type_deck_2x(pokemon_type)
     chosen_deck_3 = get_specific_type_deck_3x(pokemon_type)
@@ -369,10 +369,10 @@ def create_initial_deck(pokemon_type, pokemon_cards, trainer_cards, energy_cards
     if pokemon_type == "Colorless":
         initial_deck = (
             random.sample(pokemon_cards, 7) +
-            [f"{card}" for card in chosen_deck_1 for i in range(1)] +       # Insgesamt Pokemon: 4, Trainer: 8, Energy: 0
-            [f"{card}" for card in chosen_deck_2 for i in range(2)] +       # Insgesamt Pokemon: 4, Trainer: 6, Energy: 2
-            [f"{card}" for card in chosen_deck_3 for i in range(3)] +       # Insgesamt Pokemon: 0, Trainer: 3, Energy: 0
-            [f"{card}" for card in chosen_deck_4 for i in range(4)] +       # Insgesamt Pokemon: 0, Trainer: 8, Energy: 0
+            [f"{card}" for card in chosen_deck_1 for i in range(1)] +      # Insgesamt Pokemon: 4, Trainer: 8, Energy: 0
+            [f"{card}" for card in chosen_deck_2 for i in range(2)] +      # Insgesamt Pokemon: 4, Trainer: 6, Energy: 2
+            [f"{card}" for card in chosen_deck_3 for i in range(3)] +      # Insgesamt Pokemon: 0, Trainer: 3, Energy: 0
+            [f"{card}" for card in chosen_deck_4 for i in range(4)] +      # Insgesamt Pokemon: 0, Trainer: 8, Energy: 0
             random.sample(energy_cards, 8) +
             random.sample(trainer_cards, 10)
         )
@@ -380,21 +380,21 @@ def create_initial_deck(pokemon_type, pokemon_cards, trainer_cards, energy_cards
     elif pokemon_type == "Darkness":
         initial_deck = (
             random.sample(pokemon_cards, 11) +
-            [f"{card}" for card in chosen_deck_1 for i in range(1)] +       # Insgesamt Pokemon: 4, Trainer: 4, Energy: 0
-            [f"{card}" for card in chosen_deck_2 for i in range(2)] +       # Insgesamt Pokemon: 0, Trainer: 2, Energy: 0
-            [f"{card}" for card in chosen_deck_3 for i in range(3)] +       # Insgesamt Pokemon: 0, Trainer: 6, Energy: 0
-            [f"{card}" for card in chosen_deck_4 for i in range(4)] +       # Insgesamt Pokemon: 0, Trainer: 8, Energy: 0
-            [f"{chosen_energy}" for i in range(10)] +                       # Im gewählten Deck eigentlich nur 6 Dark Energy
+            [f"{card}" for card in chosen_deck_1 for i in range(1)] +      # Insgesamt Pokemon: 4, Trainer: 4, Energy: 0
+            [f"{card}" for card in chosen_deck_2 for i in range(2)] +      # Insgesamt Pokemon: 0, Trainer: 2, Energy: 0
+            [f"{card}" for card in chosen_deck_3 for i in range(3)] +      # Insgesamt Pokemon: 0, Trainer: 6, Energy: 0
+            [f"{card}" for card in chosen_deck_4 for i in range(4)] +      # Insgesamt Pokemon: 0, Trainer: 8, Energy: 0
+            [f"{chosen_energy}" for i in range(10)] +                      # Im gewählten Deck eigentlich nur 6 Dark Energy
             random.sample(trainer_cards, 15)
         )
 
     elif pokemon_type == "Dragon":
         initial_deck = (
             random.sample(pokemon_cards, 6) +
-            [f"{card}" for card in chosen_deck_1 for i in range(1)] +       # Insgesamt Pokemon: 3, Trainer: 5, Energy: 0
-            [f"{card}" for card in chosen_deck_2 for i in range(2)] +       # Insgesamt Pokemon: 0, Trainer: 6, Energy: 0
-            [f"{card}" for card in chosen_deck_3 for i in range(3)] +       # Insgesamt Pokemon: 6, Trainer: 0, Energy: 6
-            [f"{card}" for card in chosen_deck_4 for i in range(4)] +       # Insgesamt Pokemon: 0, Trainer: 12, Energy: 0
+            [f"{card}" for card in chosen_deck_1 for i in range(1)] +      # Insgesamt Pokemon: 3, Trainer: 5, Energy: 0
+            [f"{card}" for card in chosen_deck_2 for i in range(2)] +      # Insgesamt Pokemon: 0, Trainer: 6, Energy: 0
+            [f"{card}" for card in chosen_deck_3 for i in range(3)] +      # Insgesamt Pokemon: 6, Trainer: 0, Energy: 6
+            [f"{card}" for card in chosen_deck_4 for i in range(4)] +      # Insgesamt Pokemon: 0, Trainer: 12, Energy: 0
             [f"{chosen_energy}" for i in range(6)] +
             random.sample(trainer_cards,10)
         )
@@ -402,10 +402,10 @@ def create_initial_deck(pokemon_type, pokemon_cards, trainer_cards, energy_cards
     elif pokemon_type == "Fighting":
         initial_deck = (
             random.sample(pokemon_cards, 8) +
-            [f"{card}" for card in chosen_deck_1 for i in range(1)] +       # Insgesamt Pokemon: 3, Trainer: 4, Energy: 1
-            [f"{card}" for card in chosen_deck_2 for i in range(2)] +       # Insgesamt Pokemon: 4, Trainer: 2, Energy: 2
-            [f"{card}" for card in chosen_deck_3 for i in range(3)] +       # Insgesamt Pokemon: 0, Trainer: 6, Energy: 0
-            [f"{card}" for card in chosen_deck_4 for i in range(4)] +       # Insgesamt Pokemon: 0, Trainer: 8, Energy: 0
+            [f"{card}" for card in chosen_deck_1 for i in range(1)] +      # Insgesamt Pokemon: 3, Trainer: 4, Energy: 1
+            [f"{card}" for card in chosen_deck_2 for i in range(2)] +      # Insgesamt Pokemon: 4, Trainer: 2, Energy: 2
+            [f"{card}" for card in chosen_deck_3 for i in range(3)] +      # Insgesamt Pokemon: 0, Trainer: 6, Energy: 0
+            [f"{card}" for card in chosen_deck_4 for i in range(4)] +      # Insgesamt Pokemon: 0, Trainer: 8, Energy: 0
             [f"{chosen_energy}" for i in range(3)] +
             random.sample(energy_cards, 4) +
             random.sample(trainer_cards, 15)
@@ -414,65 +414,65 @@ def create_initial_deck(pokemon_type, pokemon_cards, trainer_cards, energy_cards
     elif pokemon_type == "Fire":
         initial_deck = (
             random.sample(pokemon_cards, 7) +
-            [f"{card}" for card in chosen_deck_1 for i in range(1)] +      # Insgesamt Pokemon: 5, Trainer: 3, Energy: 0
-            [f"{card}" for card in chosen_deck_2 for i in range(2)] +      # Insgesamt Pokemon: 0, Trainer: 2, Energy: 2
-            [f"{card}" for card in chosen_deck_3 for i in range(3)] +      # Insgesamt Pokemon: 3, Trainer: 12, Energy: 3
-            [f"{card}" for card in chosen_deck_4 for i in range(4)] +      # Insgesamt Pokemon: 0, Trainer: 4, Energy: 0
-            [f"{chosen_energy}" for i in range(6)] +                       # Im gewählten Deck eigentlich nur 6 Fire Energy
+            [f"{card}" for card in chosen_deck_1 for i in range(1)] +     # Insgesamt Pokemon: 5, Trainer: 3, Energy: 0
+            [f"{card}" for card in chosen_deck_2 for i in range(2)] +     # Insgesamt Pokemon: 0, Trainer: 2, Energy: 2
+            [f"{card}" for card in chosen_deck_3 for i in range(3)] +     # Insgesamt Pokemon: 3, Trainer: 12, Energy: 3
+            [f"{card}" for card in chosen_deck_4 for i in range(4)] +     # Insgesamt Pokemon: 0, Trainer: 4, Energy: 0
+            [f"{chosen_energy}" for i in range(6)] +                      # Im gewählten Deck eigentlich nur 6 Fire Energy
             random.sample(trainer_cards, 13)
         )
 
     elif pokemon_type == "Grass":
         initial_deck = (
-            [f"{card}" for card in chosen_deck_1 for i in range(1)] +       # Insgesamt Pokemon: 9, Trainer: 4, Energy: 0
-            [f"{card}" for card in chosen_deck_2 for i in range(2)] +       # Insgesamt Pokemon: 0, Trainer: 6, Energy: 2
-            [f"{card}" for card in chosen_deck_3 for i in range(3)] +       # Insgesamt Pokemon: 9, Trainer: 0, Energy: 0
-            [f"{card}" for card in chosen_deck_4 for i in range(4)] +       # Insgesamt Pokemon: 0, Trainer: 20, Energy: 0
-            [f"{chosen_energy}" for i in range(7)] +                        # Im gewählten Deck nur 7 Grass Energy
+            [f"{card}" for card in chosen_deck_1 for i in range(1)] +      # Insgesamt Pokemon: 9, Trainer: 4, Energy: 0
+            [f"{card}" for card in chosen_deck_2 for i in range(2)] +      # Insgesamt Pokemon: 0, Trainer: 6, Energy: 2
+            [f"{card}" for card in chosen_deck_3 for i in range(3)] +      # Insgesamt Pokemon: 9, Trainer: 0, Energy: 0
+            [f"{card}" for card in chosen_deck_4 for i in range(4)] +      # Insgesamt Pokemon: 0, Trainer: 20, Energy: 0
+            [f"{chosen_energy}" for i in range(7)] +                       # Im gewählten Deck nur 7 Grass Energy
             random.sample(trainer_cards, 3)
         )
 
     elif pokemon_type == "Lightning":
         initial_deck = (
             random.sample(pokemon_cards, 2) +
-            [f"{card}" for card in chosen_deck_1 for i in range(1)] +       # Insgesamt Pokemon: 9, Trainer: 0, Energy: 1
-            [f"{card}" for card in chosen_deck_2 for i in range(2)] +       # Insgesamt Pokemon: 4, Trainer: 4, Energy: 0
-            [f"{card}" for card in chosen_deck_3 for i in range(3)] +       # Insgesamt Pokemon: 0, Trainer: 12, Energy: 0
-            [f"{card}" for card in chosen_deck_4 for i in range(4)] +       # Insgesamt Pokemon: 0, Trainer: 0, Energy: 0
-            [f"{chosen_energy}" for i in range(9)] +                        # Im gewählten Deck nur 7 Lightning Energy
+            [f"{card}" for card in chosen_deck_1 for i in range(1)] +      # Insgesamt Pokemon: 9, Trainer: 0, Energy: 1
+            [f"{card}" for card in chosen_deck_2 for i in range(2)] +      # Insgesamt Pokemon: 4, Trainer: 4, Energy: 0
+            [f"{card}" for card in chosen_deck_3 for i in range(3)] +      # Insgesamt Pokemon: 0, Trainer: 12, Energy: 0
+            [f"{card}" for card in chosen_deck_4 for i in range(4)] +      # Insgesamt Pokemon: 0, Trainer: 0, Energy: 0
+            [f"{chosen_energy}" for i in range(9)] +                       # Im gewählten Deck nur 7 Lightning Energy
             random.sample(trainer_cards, 19)
         )
 
     elif pokemon_type == "Metal":
         initial_deck = (
             random.sample(pokemon_cards, 7) +
-            [f"{card}" for card in chosen_deck_1 for i in range(1)] +       # Insgesamt Pokemon: 2, Trainer: 3, Energy: 0
-            [f"{card}" for card in chosen_deck_2 for i in range(2)] +       # Insgesamt Pokemon: 0, Trainer: 4, Energy: 0
-            [f"{card}" for card in chosen_deck_3 for i in range(3)] +       # Insgesamt Pokemon: 6, Trainer: 6, Energy: 0
-            [f"{card}" for card in chosen_deck_4 for i in range(4)] +       # Insgesamt Pokemon: 0, Trainer: 4, Energy: 0
-            [f"{chosen_energy}" for i in range(8)] +                        # Im gewählten Deck nur 8 Metal Energy
+            [f"{card}" for card in chosen_deck_1 for i in range(1)] +      # Insgesamt Pokemon: 2, Trainer: 3, Energy: 0
+            [f"{card}" for card in chosen_deck_2 for i in range(2)] +      # Insgesamt Pokemon: 0, Trainer: 4, Energy: 0
+            [f"{card}" for card in chosen_deck_3 for i in range(3)] +      # Insgesamt Pokemon: 6, Trainer: 6, Energy: 0
+            [f"{card}" for card in chosen_deck_4 for i in range(4)] +      # Insgesamt Pokemon: 0, Trainer: 4, Energy: 0
+            [f"{chosen_energy}" for i in range(8)] +                       # Im gewählten Deck nur 8 Metal Energy
             random.sample(trainer_cards, 20)
         )
 
     elif pokemon_type == "Psychic":
         initial_deck = (
             random.sample(pokemon_cards, 3) +
-            [f"{card}" for card in chosen_deck_1 for i in range(1)] +       # Insgesamt Pokemon: 2, Trainer: 6, Energy: 0
-            [f"{card}" for card in chosen_deck_2 for i in range(2)] +       # Insgesamt Pokemon: 6, Trainer: 2, Energy: 0
-            [f"{card}" for card in chosen_deck_3 for i in range(3)] +       # Insgesamt Pokemon: 0, Trainer: 3, Energy: 0
-            [f"{card}" for card in chosen_deck_4 for i in range(4)] +       # Insgesamt Pokemon: 4, Trainer: 4, Energy: 0
-            [f"{chosen_energy}" for i in range(6)] +                        # Im gewählten Deck nur 6 Psychic Energy
+            [f"{card}" for card in chosen_deck_1 for i in range(1)] +      # Insgesamt Pokemon: 2, Trainer: 6, Energy: 0
+            [f"{card}" for card in chosen_deck_2 for i in range(2)] +      # Insgesamt Pokemon: 6, Trainer: 2, Energy: 0
+            [f"{card}" for card in chosen_deck_3 for i in range(3)] +      # Insgesamt Pokemon: 0, Trainer: 3, Energy: 0
+            [f"{card}" for card in chosen_deck_4 for i in range(4)] +      # Insgesamt Pokemon: 4, Trainer: 4, Energy: 0
+            [f"{chosen_energy}" for i in range(6)] +                       # Im gewählten Deck nur 6 Psychic Energy
             random.sample(trainer_cards, 24)
         )
 
     elif pokemon_type == "Water":
         initial_deck = (
             random.sample(pokemon_cards, 7) +
-            [f"{card}" for card in chosen_deck_1 for i in range(1)] +       # Insgesamt Pokemon: 1, Trainer: 3, Energy: 0
-            [f"{card}" for card in chosen_deck_2 for i in range(2)] +       # Insgesamt Pokemon: 4, Trainer: 0, Energy: 0
-            [f"{card}" for card in chosen_deck_3 for i in range(3)] +       # Insgesamt Pokemon: 3, Trainer: 9, Energy: 0
-            [f"{card}" for card in chosen_deck_4 for i in range(4)] +       # Insgesamt Pokemon: 0, Trainer: 8, Energy: 0
-            [f"{chosen_energy}" for i in range(8)] +                        # Im gewählten Deck nur 8 Water Energy
+            [f"{card}" for card in chosen_deck_1 for i in range(1)] +      # Insgesamt Pokemon: 1, Trainer: 3, Energy: 0
+            [f"{card}" for card in chosen_deck_2 for i in range(2)] +      # Insgesamt Pokemon: 4, Trainer: 0, Energy: 0
+            [f"{card}" for card in chosen_deck_3 for i in range(3)] +      # Insgesamt Pokemon: 3, Trainer: 9, Energy: 0
+            [f"{card}" for card in chosen_deck_4 for i in range(4)] +      # Insgesamt Pokemon: 0, Trainer: 8, Energy: 0
+            [f"{chosen_energy}" for i in range(8)] +                       # Im gewählten Deck nur 8 Water Energy
             random.sample(trainer_cards, 17)
         )
 

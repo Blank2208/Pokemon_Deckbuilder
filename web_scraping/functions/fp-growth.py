@@ -18,13 +18,13 @@ def prepare_data_for_fpgrowth(file_path):
             # Verwalte Karten und deren Anzahl
             transaction[row['Card Name']] += 1
 
-        # Expandiere Multimenge in eine Liste mit suffigierten Elementen
+        # Expandiere Multimenge in eine Liste
         expanded_transaction = [
             f"{card}_{i}" for card, count in transaction.items() for i in range(1, count + 1)
         ]
         transactions_list.append(expanded_transaction)
 
-    # Umwandeln der Transaktionen in FP-Growth Format
+    # Umwandeln der Transaktionen ins FP-Growth Format
     te = TransactionEncoder()
     te_ary = te.fit(transactions_list).transform(transactions_list)
     df_transformed = pd.DataFrame(te_ary, columns=te.columns_)
@@ -32,7 +32,7 @@ def prepare_data_for_fpgrowth(file_path):
     return df_transformed
 
 
-# Funktion, um Assoziationsregeln mit FP-Growth zu erstellen
+# Funktion, um Assoziationsregeln zu erstellen
 def generate_association_rules_with_fpgrowth(file_path, min_support, min_threshold):
     print(f"Starten der Datenvorbereitung...")
     df_transformed = prepare_data_for_fpgrowth(file_path)
@@ -57,7 +57,7 @@ def generate_association_rules_with_fpgrowth(file_path, min_support, min_thresho
     rules = association_rules(frequent_itemsets, metric="lift", min_threshold=min_threshold, num_itemsets=None)
 
     print(f"Anzahl der generierten Regeln nach Filterung: {len(rules)}")
-    # Filterung: Maximal 4 Vorgänger oder Nachfolger
+    # Filterung: Maximal 7 Vorgänger oder Nachfolger
     rules = rules[
         (rules['antecedents'].apply(len) >= 7) &
         (rules['consequents'].apply(len) >= 7)

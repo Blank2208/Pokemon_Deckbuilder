@@ -32,6 +32,7 @@ def fetch_pokemon_data(api_url, params):
 
     return all_cards
 
+
 # Speichern der Karten in eine CSV-Datei
 def save_cards_to_csv(cards, filename="pokemon_cards.csv"):
 

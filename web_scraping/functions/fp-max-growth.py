@@ -5,7 +5,6 @@ from mlxtend.frequent_patterns import fpmax
 from mlxtend.preprocessing import TransactionEncoder
 
 
-# Funktion, um die CSV-Datei zu laden und die Daten für den FPMax-Algorithmus vorzubereiten
 def prepare_data_for_fpmax(file_path):
     df = pd.read_csv(file_path)
 
@@ -15,13 +14,12 @@ def prepare_data_for_fpmax(file_path):
         for _, row in group.iterrows():
             transaction[row['Card Name']] += 1
 
-        # Expandiere Multimenge in eine Liste mit suffigierten Elementen
+        # Expandiere Multimenge in eine Liste
         expanded_transaction = [
             f"{card}_{i}" for card, count in transaction.items() for i in range(1, count + 1)
         ]
         transactions_list.append(expanded_transaction)
 
-    # Umwandeln der Transaktionen in FPMax Format
     te = TransactionEncoder()
     te_ary = te.fit(transactions_list).transform(transactions_list)
     df_transformed = pd.DataFrame(te_ary, columns=te.columns_)
@@ -68,7 +66,8 @@ if maximal_itemsets is not None:
     # Filtern der Itemsets mit maximal 40 Karten
     maximal_itemsets['itemsets'] = maximal_itemsets['itemsets'].apply(lambda x: list(x))
     maximal_itemsets = maximal_itemsets[(maximal_itemsets['itemsets'].apply(len) >= 30) & (maximal_itemsets['itemsets'].apply(len) <= 40)]
-    # Falls mehrere gültige Itemsets übrig bleiben, bestes nach Support auswählen
+
+    # Falls mehrere gültige Itemsets übrig bleiben, bestes nach Support auswählen (gilt für Kommentar hierunter)
     # maximal_itemsets = maximal_itemsets.sort_values(by='support', ascending=False).iloc[:1]
 
     #print("Nach dem Filtern:", len(maximal_itemsets))

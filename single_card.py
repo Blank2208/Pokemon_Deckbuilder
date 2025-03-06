@@ -7,5 +7,3 @@ a_card = fetch_pokemon_data(url, params)
 
 df = pd.DataFrame(a_card)
 print(df)
-
-# Evaluation der karten an sich, potenziell Usage-Rate?
