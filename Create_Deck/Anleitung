@@ -1,0 +1,57 @@
+Deckbuilder.py ist die Hauptdatei mit dem genetischem Algorithmus.
+
+Damit er funktioniert, müssen folgende Dateien in Create_Deck gepackt und die
+Dateinamen in Deckbuilder.py entsprechend angepasst sein.
+
+1. Eine "assoziationsregeln-<Nr.>.csv" Datei für die Fitness-Evaluation.
+2. Eine "energy_cards.csv" Datei, mit den aktuell zugelassenen Energiekarten.
+3. Eine "trainer_cards.csv" Datei, mit den aktuell zugelassenen Trainerkarten.
+4. Alle Typ-Dateien, z.B. "Fire_pokemon_cards.csv", mit den aktuell zugelassenen Pokemonkarten jedes Typs.
+
+Die 1. Dateien befinden sich in web_scraping --> Assoziationsregeln
+Die 2.,3. und 4. Dateien können in API_to_CSV erstellt werden.
+
+Anpassbare Werte:
+1. num_mutants: Anzahl der (zuerst identischen) Decks, die zufällig mutiert werden
+    anzupassen in mutation()
+2. num_mutations: Anzahl der Karten, zufällig in jeweiligem Deck ersetzt werden
+    anzupassen in mutate() und in mutation()
+3. trainer_cards, pokemon_cards, energy_cards: Anzahl des jeweiligen Supertypes pro Deck
+    anzupassen in create_initial_deck() unter initial_deck = (
+                                                random.sample(pokemon_cards, 15) +
+                                                random.sample(trainer_cards, 35) +
+                                                [f"{chosen_energy}" for i in range(10)]  # Energie-Karten korrekt nummerieren
+                                                )
+
+4. max_iterations: Anzahl Durchläufe, bis Programm abbricht
+    anzupassen in genetic_algorithm()
+5. best_score: Wunschwert, bei dem der Algorithmus abbricht
+
+
+
+
+ASR Astral Radiance     ok
+BRS Brilliant Stars     ok
+PGO Pokemon GO          ok
+LOR Lost Origin         ok
+SIT Silver Tempest      ok
+CRZ Crown Zenith        ok
+SVI Scarlet & Violet    ok
+PAL Paldea Evolved      ok
+OBF Obsidian Flames     ok
+MEW 151                 ok
+PAR Paradox Rift        ok
+TEF Temporal Forces     ok
+TWM Twilight Masquerade ok
+
+PAF Paldean Fates (war Path of the Ancients)
+SVE Scarlet & Violet? Anscheinend ein separates Set nur für Energies während Scarlet & Violet
+SFA Shrouded Fable (war SCR)
+SCR Stellar Crown
+SSP Surging Sparks (war Shiny Treasure Ex)
+
+
+
+
+
+frozenset({'Iono Paldea Evolved 185_1', 'Psychic Energy Scarlet & Violet: Special Event Set 13_4', 'Earthen Vessel Paradox Rift 163_1', 'Nest Ball Scarlet & Violet Base Set 181_1', 'Psychic Energy Scarlet & Violet: Special Event Set 13_3', 'Hisuian Heavy Ball Astral Radiance 146_1', 'Munkidori Twilight Masquerade 95_2', 'Darkness Energy Scarlet & Violet: Special Event Set 15_2', 'Kirlia Silver Tempest 68_1', 'Artazon Paldea Evolved 171_1', 'Counter Catcher Paradox Rift 160_1', 'Psychic Energy Scarlet & Violet: Special Event Set 13_2', 'Psychic Energy Scarlet & Violet: Special Event Set 13_6', 'Mawile Lost Origin 71_1', 'Darkness Energy Scarlet & Violet: Special Event Set 15_1', 'Technical Machine: Evolution Paradox Rift 178_1', 'Arven Obsidian Flames 186_3', 'Drifloon Scarlet & Violet Base Set 89_1', 'Kirlia Silver Tempest 68_4', 'Iono Paldea Evolved 185_3', "Professor Turo's Scenario Paradox Rift 171_1", 'Buddy-Buddy Poffin Temporal Forces 144_3', 'Ralts Astral Radiance 60_1', 'Fezandipiti ex Scarlet & Violet: Fated Encounters 38_1', 'Gardevoir ex Scarlet & Violet Base Set 86_2', 'Darkness Energy Scarlet & Violet: Special Event Set 15_3', 'Psychic Energy Scarlet & Violet: Special Event Set 13_1', 'Buddy-Buddy Poffin Temporal Forces 144_1', 'Ultra Ball Scarlet & Violet Base Set 196_1', 'Pal Pad Scarlet & Violet Base Set 182_1', 'Ralts Astral Radiance 60_3', 'Buddy-Buddy Poffin Temporal Forces 144_4', 'Buddy-Buddy Poffin Temporal Forces 144_2', 'Radiant Greninja Astral Radiance 46_1', 'Earthen Vessel Paradox Rift 163_2', 'Iono Paldea Evolved 185_2', 'Unfair Stamp Twilight Masquerade 165_1', 'Ralts Astral Radiance 60_4', 'Counter Catcher Paradox Rift 160_2', 'Arven Obsidian Flames 186_2', "Boss's Orders Paldea Evolved 172_1", 'Super Rod Paldea Evolved 188_2', 'Arven Obsidian Flames 186_4', 'Kirlia Silver Tempest 68_2', 'Kirlia Silver Tempest 68_3', 'Psychic Energy Scarlet & Violet: Special Event Set 13_7', 'Ralts Astral Radiance 60_2', 'Bravery Charm Paldea Evolved 173_1', 'Arven Obsidian Flames 186_1', 'Psychic Energy Scarlet & Violet: Special Event Set 13_5', 'Technical Machine: Evolution Paradox Rift 178_2', 'Munkidori Twilight Masquerade 95_1', 'Gardevoir ex Scarlet & Violet Base Set 86_1', 'Nest Ball Scarlet & Violet Base Set 181_2', 'Scream Tail Paradox Rift 86_1', 'Bravery Charm Paldea Evolved 173_2', 'Manaphy Brilliant Stars 41_1', 'Ultra Ball Scarlet & Violet Base Set 196_2', 'Super Rod Paldea Evolved 188_1', 'Klefki Scarlet & Violet Base Set 96_1'})
