@@ -3,7 +3,7 @@ import csv
 
 def load_card_data(card_database_csv):
     """
-    Lädt eine Karteid-Datenbank aus einer CSV-Datei.
+    Lädt eine Karten-ID-Datenbank aus einer CSV-Datei.
 
     Args:
         card_database_csv (str): Der Name der CSV-Datei mit Karten-Informationen.
@@ -59,5 +59,4 @@ def id_to_card_converter(input_csv, output_csv, card_database_csv):
                 print(f"Warnung: ID {card_id} nicht in der Datenbank gefunden.")
 
 
-# Beispielaufruf
 id_to_card_converter("best_deck.csv", "best_deck_converted.csv", "all_cards.csv")
