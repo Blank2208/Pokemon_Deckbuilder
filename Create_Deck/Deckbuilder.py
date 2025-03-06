@@ -76,8 +76,8 @@ def load_supertype_query_library(csv_filename):
         for row in reader:
             name = row['name']
             supertype = row['supertype']
-            set_json = row[("set")].strip()  # Set ist ein JSON-String
-            # Expansion (intern als name) aus JSON extrahieren
+            set_json = row[("set")].strip()
+            # Expansion (intern als name) wird aus JSON extrahiert
             try:
                 set_data = ast.literal_eval(set_json)  # Sicheres Parsen
                 expansion = set_data.get("name", "Unbekannt")
@@ -95,13 +95,13 @@ def load_supertype_query_library(csv_filename):
         for row in reader:
             name = row['name']
             supertype = row['supertype']
-            set_json = row[("set")].strip()  # Set ist ein JSON-String
-            # Expansion (intern als name) aus JSON extrahieren
+            set_json = row[("set")].strip()
+
             try:
-                set_data = ast.literal_eval(set_json)  # Sicheres Parsen
+                set_data = ast.literal_eval(set_json)
                 expansion = set_data.get("name", "Unbekannt")
             except (SyntaxError, ValueError):
-                expansion = "Unbekannt"  # Falls Fehler auftritt
+                expansion = "Unbekannt"
             number = row['number']
             query_library.append(f"{name} {expansion} {number} {supertype}")
 
@@ -134,13 +134,13 @@ def load_replacement_pool(csv_filename):
         # Karten aus der CSV lesen
         for row in reader:
             name = row['name']
-            set_json = row[("set")].strip()  # Set ist ein JSON-String
-            # Expansion (intern als name gekennzeichnet) aus JSON extrahieren
+            set_json = row[("set")].strip()
+
             try:
-                set_data = ast.literal_eval(set_json)  # Sicheres Parsen
+                set_data = ast.literal_eval(set_json)
                 expansion = set_data.get("name", "Unbekannt")
             except (SyntaxError, ValueError):
-                expansion = "Unbekannt"  # Falls Fehler auftritt
+                expansion = "Unbekannt"
             number = row['number']
             replacement_pool.append(f"{name} {expansion} {number}")
 
@@ -183,7 +183,6 @@ def check_supertype(card, supertype_library):
 
     for entry in supertype_library:
         if entry.startswith(card_base + " "):
-            # Return ist ein String
             return entry.split(" ")[-1]  # Supertype ist das letzte Wort im String
 
     return None  # Falls die Karte nicht gefunden wurde
@@ -201,7 +200,7 @@ def mutate(deck, pokemon_replacement_pool, supertype_library, num_mutations=5):
 
     for index in mutation_indices:
 
-        # Die Karten werden nur durch andere Karten denselben Supertypes ausgetauscht
+        # Die Karten werden nur durch andere Karten desselben Supertypes ausgetauscht
         # Energie-Karten werden nicht ersetzt
         supertype = check_supertype(mutated_deck[index], supertype_library)
 
@@ -288,7 +287,7 @@ def genetic_algorithm():
 
     # Das relevante replacement_pool der Pokemon auswählen
     pokemon_cards = load_replacement_pool(f"{pokemon_type}_pokemon_cards.csv")
-    # Das relevante Pokemon-Typ in die supertype_library hinzufügen
+    # Den relevanten Pokemon-Typ in die supertype_library hinzufügen
     supertype_library = load_supertype_query_library(f"{pokemon_type}_pokemon_cards.csv")
 
     # Zufälliges Start-Deck mit dem gewähltem Typ generieren
