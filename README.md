@@ -9,6 +9,7 @@ Im Ordner "Create_Deck" befindet sich der Deckbuilder, also die Datei die ausgef
 - In "initial_deck.py" haben wir zu fast jeder Funktion Kommentare ergänzt. In den if-Zweigen haben wir Kommentare wie "Insgesamt: Pokemon: x, Trainer: x, Energy: x" geschrieben. Dies haben wir zur Orientierung gemacht. Je nachdem, wie das Dict bzw. die Zuweisungen zum Beginn des jeweiligen Decks geändert wird, müssen auch "random.sample(pokemon_cards, x)", "random.sample(trainer_cards, x)" und "random.sample(energy_cards, x)" angepasst werden, da die Gesamtzahl aller Karten genau 60 Karten betragen muss!
 - Je nach Nutzereingabe wird "<typ>_pokemon_cards.csv" aufgerufen. Diese CSV-Dateien beinhalten alle Pokemon-Karten, welche mit dem Pokemon-Typen der Nutzereingabe übereinstimmt. --> Die Pokemon im Deck werden immer mit den Pokemon ausgetauscht, welche sich in der CSV-Datei befinden.
 - Das beste Deck wird dann in "best_deck.csv" gespeichert bzw. das Deck, was der Nutzer mit "ja" bestätigt.
+- Damit der Deckbuilder erfolgreich startet, muss man den Anfangsbuchstaben des Pokemon-Typen groß eingeben. Möchte ich also ein Deck vom Pokemon-Typen "Water" haben, muss auch "Water" geschrieben werden. "water" ist eine ungültige Eingabe. 
 <br>
 
 Im Ordner "Diagrams" befinden sich die Files, womit wir die Statistiken der Kartenverteilung ermittelt haben (Die Diagramme, welche wir in unserer Dokumentationsarbeit und in der Präsentation benutzt haben). <br>
